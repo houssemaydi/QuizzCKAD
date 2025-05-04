@@ -1,0 +1,587 @@
+[
+  {
+    "id": 1,
+    "chapter": "Language Features",
+    "question": "Which new pattern matching feature was introduced in Java 21?",
+    "options": [
+      "Pattern matching for switch",
+      "Pattern matching for if",
+      "Pattern matching for while",
+      "Pattern matching for try-catch"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Java 21 introduced pattern matching for switch statements, allowing developers to match against patterns in switch cases, making code more concise and expressive when working with complex object hierarchies."
+  },
+  {
+    "id": 2,
+    "chapter": "Language Features",
+    "question": "What is the purpose of Record Patterns in Java 21?",
+    "options": [
+      "To create immutable data objects",
+      "To destructure and access record components in a more concise way",
+      "To enable pattern matching on enums",
+      "To replace lambda expressions"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Record Patterns in Java 21 allow for destructuring record values, enabling developers to extract components directly in pattern matching contexts, making code more readable when working with nested records."
+  },
+  {
+    "id": 3,
+    "chapter": "Language Features",
+    "question": "What does the 'when' clause in pattern matching add to switch expressions in Java 21?",
+    "options": [
+      "Conditional timing for execution",
+      "Asynchronous pattern evaluation",
+      "Guard conditions that must be satisfied for a pattern to match",
+      "Deferred execution of matched patterns"
+    ],
+    "correctAnswer": 2,
+    "explanation": "The 'when' clause in pattern matching for switch expressions adds guard conditions, allowing a case to match only when both the pattern matches and the boolean condition specified after 'when' evaluates to true."
+  },
+  {
+    "id": 4,
+    "chapter": "Language Features",
+    "question": "What are Unnamed Patterns and Unnamed Variables in Java 21?",
+    "options": [
+      "Variables that can't be referenced elsewhere in the code",
+      "A simplified way to ignore specific components using underscore (_)",
+      "Anonymous inner classes",
+      "Variables without explicit type declarations"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Unnamed Patterns and Unnamed Variables in Java 21 use the underscore (_) syntax to indicate that you want to match a component but don't need to use its value, making patterns more concise by eliminating unused variable declarations."
+  },
+  {
+    "id": 5,
+    "chapter": "Language Features",
+    "question": "What is the primary benefit of Sequenced Collections in Java 21?",
+    "options": [
+      "Thread-safe collection operations",
+      "Faster collection sorting algorithms",
+      "Providing a standard way to represent collections with a defined encounter order",
+      "Automatic memory management for large collections"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Sequenced Collections provide a standard way to represent collections with a defined encounter order, offering uniform APIs for accessing first and last elements and obtaining reverse views across collection types like List, Set, and Map."
+  },
+  {
+    "id": 6,
+    "chapter": "Virtual Threads",
+    "question": "What is a key difference between platform threads and virtual threads in Java 21?",
+    "options": [
+      "Virtual threads run on a different JVM than platform threads",
+      "Virtual threads are managed by the operating system while platform threads are managed by the JVM",
+      "Platform threads are mapped 1:1 to OS threads while virtual threads are managed by the JVM",
+      "Virtual threads cannot access shared memory while platform threads can"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Platform threads have a 1:1 mapping to OS threads, while virtual threads are managed by the JVM. This allows Java applications to create millions of virtual threads with minimal overhead, as they don't consume OS resources like platform threads do."
+  },
+  {
+    "id": 7,
+    "chapter": "Virtual Threads",
+    "question": "Which method creates a virtual thread in Java 21?",
+    "options": [
+      "Thread.createVirtual(Runnable r)",
+      "Thread.startVirtualThread(Runnable r)",
+      "Thread.ofVirtual().start(Runnable r)",
+      "Thread.builder().virtual().start(Runnable r)"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The Thread.startVirtualThread(Runnable r) method creates and starts a virtual thread that runs the given Runnable task. This provides a simple way to leverage virtual threads for lightweight concurrency."
+  },
+  {
+    "id": 8,
+    "chapter": "Virtual Threads",
+    "question": "What is thread pinning in the context of virtual threads?",
+    "options": [
+      "Assigning a thread to a specific CPU core",
+      "When a virtual thread is temporarily bound to its carrier thread and cannot yield",
+      "Marking a thread as non-interruptible",
+      "Setting a thread's priority to maximum"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Thread pinning occurs when a virtual thread cannot yield control of its carrier thread, typically when executing native code or synchronized blocks. Pinning reduces the efficiency of virtual threads by preventing the carrier thread from executing other virtual threads."
+  },
+  {
+    "id": 9,
+    "chapter": "Virtual Threads",
+    "question": "What is the main advantage of using a ThreadLocal with virtual threads?",
+    "options": [
+      "ThreadLocal provides faster access to local variables for virtual threads",
+      "ThreadLocal values are shared between all virtual threads",
+      "There is no advantage; ThreadLocal should be avoided with virtual threads",
+      "ThreadLocal provides isolated storage for values for each virtual thread"
+    ],
+    "correctAnswer": 3,
+    "explanation": "ThreadLocal provides isolated storage for values for each virtual thread, just like with platform threads. This allows thread-confined data to work correctly even with high numbers of virtual threads, maintaining the same semantics as with platform threads."
+  },
+  {
+    "id": 10,
+    "chapter": "Virtual Threads",
+    "question": "What happens when calling Thread.sleep() on a virtual thread?",
+    "options": [
+      "It blocks the underlying OS thread",
+      "It yields the carrier thread allowing other virtual threads to run",
+      "It throws an UnsupportedOperationException",
+      "It has no effect on virtual threads"
+    ],
+    "correctAnswer": 1,
+    "explanation": "When a virtual thread calls Thread.sleep(), it yields its carrier thread, allowing the JVM to schedule other virtual threads on the same carrier thread. This is more efficient than with platform threads, where Thread.sleep() blocks the entire OS thread."
+  },
+  {
+    "id": 11,
+    "chapter": "Project Loom",
+    "question": "Which feature is NOT part of Project Loom in Java 21?",
+    "options": [
+      "Virtual Threads",
+      "Structured Concurrency",
+      "Scoped Values",
+      "Reactive Streams"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Reactive Streams is not part of Project Loom. Project Loom focuses on lightweight concurrency constructs including Virtual Threads, Structured Concurrency, and Scoped Values to simplify concurrent programming in Java."
+  },
+  {
+    "id": 12,
+    "chapter": "Project Loom",
+    "question": "What is Structured Concurrency in Java 21?",
+    "options": [
+      "A way to organize threads in hierarchical structures",
+      "A framework that ensures child tasks complete before parent tasks",
+      "A method to define thread priorities",
+      "A technique for improving thread scheduling"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Structured Concurrency is a concurrency control mechanism that ensures child tasks complete before their parent task. It simplifies error handling and cancellation by propagating these signals through the task hierarchy, helping to avoid resource leaks."
+  },
+  {
+    "id": 13,
+    "chapter": "Project Loom",
+    "question": "In Structured Concurrency, what happens if one subtask fails with an exception?",
+    "options": [
+      "Only that subtask is cancelled",
+      "All sibling subtasks are cancelled and the exception propagates to the parent",
+      "The JVM automatically retries the failed subtask",
+      "The exception is logged but execution continues"
+    ],
+    "correctAnswer": 1,
+    "explanation": "When a subtask fails with an exception in Structured Concurrency, all sibling subtasks are automatically cancelled, and the exception propagates to the parent task. This ensures clean handling of errors and prevents resource leaks."
+  },
+  {
+    "id": 14,
+    "chapter": "Project Loom",
+    "question": "What is the purpose of Scoped Values in Java 21?",
+    "options": [
+      "To replace traditional variable scoping in Java",
+      "To provide immutable thread-local variables with inheritance to child threads",
+      "To enable global variables in Java applications",
+      "To simplify garbage collection for large objects"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Scoped Values provide immutable thread-local values that are automatically inherited by child threads. They offer a better alternative to ThreadLocal for sharing data within a thread hierarchy, with improved performance and fewer memory leaks."
+  },
+  {
+    "id": 15,
+    "chapter": "Project Loom",
+    "question": "How does using Structured Concurrency differ from using CompletableFuture?",
+    "options": [
+      "Structured Concurrency works with fewer threads",
+      "CompletableFuture doesn't support virtual threads",
+      "Structured Concurrency manages the lifecycle of tasks as a unit, including cancellation and error propagation",
+      "CompletableFuture has better performance for CPU-bound tasks"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Structured Concurrency manages tasks as a hierarchy where the lifecycle of child tasks is bound to their parent, simplifying error handling and cancellation. CompletableFuture allows for more flexible composition but requires manual management of task lifecycles."
+  },
+  {
+    "id": 16,
+    "chapter": "Concurrency Utilities",
+    "question": "Which new method in Java 21 simplifies finding the first non-empty Optional from multiple sources?",
+    "options": [
+      "Optional.combine()",
+      "Optional.anyOf()",
+      "Optional.or()",
+      "Optional.firstPresent()"
+    ],
+    "correctAnswer": 2,
+    "explanation": "The Optional.or() method in Java 21 allows chaining multiple Optional-producing functions, returning the first non-empty Optional. This simplifies code that needs to try multiple sources in sequence until finding a valid result."
+  },
+  {
+    "id": 17,
+    "chapter": "Concurrency Utilities",
+    "question": "What does ExecutorService.newThreadPerTaskExecutor() do in Java 21?",
+    "options": [
+      "Creates a thread pool that grows as needed",
+      "Creates an executor that uses a new platform thread for each task",
+      "Creates an executor that uses a new virtual thread for each task",
+      "Creates a fixed-size thread pool"
+    ],
+    "correctAnswer": 2,
+    "explanation": "ExecutorService.newThreadPerTaskExecutor() creates an executor that starts a new virtual thread for each submitted task. This is ideal for I/O-bound applications, as it allows for high concurrency without the overhead of platform threads."
+  },
+  {
+    "id": 18,
+    "chapter": "Concurrency Utilities",
+    "question": "What is the benefit of using StructuredTaskScope in Java 21?",
+    "options": [
+      "It automatically parallelizes sequential code",
+      "It provides a way to handle subtasks as a unit, with controlled cancellation and error handling",
+      "It optimizes memory usage for thread pools",
+      "It implements the work-stealing algorithm for better performance"
+    ],
+    "correctAnswer": 1,
+    "explanation": "StructuredTaskScope provides a way to handle a group of related subtasks as a unit, ensuring they are properly cancelled if the parent task completes or encounters an error. This helps prevent resource leaks and simplifies concurrent code."
+  },
+  {
+    "id": 19,
+    "chapter": "Concurrency Utilities",
+    "question": "Which pattern is best implemented using StructuredTaskScope.ShutdownOnFailure?",
+    "options": [
+      "Parallel stream processing",
+      "Event-driven programming",
+      "Fork-join tasks",
+      "Failing fast when any subtask fails"
+    ],
+    "correctAnswer": 3,
+    "explanation": "StructuredTaskScope.ShutdownOnFailure is designed for implementing the 'fail-fast' pattern, where you want to cancel all subtasks as soon as any one of them fails. This is useful for scenarios where partial results are not useful."
+  },
+  {
+    "id": 20,
+    "chapter": "Concurrency Utilities",
+    "question": "What does StructuredTaskScope.ShutdownOnSuccess provide?",
+    "options": [
+      "It shuts down all tasks when the executor service is closed",
+      "It cancels remaining subtasks once any subtask completes successfully",
+      "It automatically manages thread pools based on success rates",
+      "It provides callbacks for successful task completion"
+    ],
+    "correctAnswer": 1,
+    "explanation": "StructuredTaskScope.ShutdownOnSuccess implements the 'find first' pattern, cancelling all outstanding subtasks once any subtask completes successfully. This is useful for scenarios like querying multiple services where you only need one successful response."
+  },
+  {
+    "id": 21,
+    "chapter": "Foreign Function & Memory API",
+    "question": "What is the primary purpose of the Foreign Function & Memory API in Java 21?",
+    "options": [
+      "To optimize garbage collection for large memory allocations",
+      "To provide direct access to native code and memory from Java",
+      "To enable Java code to run in non-JVM environments",
+      "To improve performance of Java reflection"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The Foreign Function & Memory API enables Java programs to interoperate with code and data outside the Java runtime. It provides ways to call native libraries and to safely and efficiently access foreign memory (memory not managed by the JVM)."
+  },
+  {
+    "id": 22,
+    "chapter": "Foreign Function & Memory API",
+    "question": "What does the MemorySegment interface represent in the Foreign Function & Memory API?",
+    "options": [
+      "A section of JVM heap memory",
+      "A memory-mapped file",
+      "A contiguous region of memory, either on-heap or off-heap",
+      "A memory allocation strategy"
+    ],
+    "correctAnswer": 2,
+    "explanation": "MemorySegment represents a contiguous region of memory, which can be located on-heap or off-heap. It provides a safe way to access memory with bounds checking and temporal safety, preventing use-after-free and similar errors."
+  },
+  {
+    "id": 23,
+    "chapter": "Foreign Function & Memory API",
+    "question": "What is the role of the Linker interface in the Foreign Function & Memory API?",
+    "options": [
+      "It links Java modules together",
+      "It optimizes memory access patterns",
+      "It connects Java method calls to native function calls",
+      "It manages the lifecycle of memory segments"
+    ],
+    "correctAnswer": 2,
+    "explanation": "The Linker interface creates foreign functions, allowing Java code to call native functions in shared libraries. It handles the conversion between Java and native types, as well as the complexity of calling conventions on different platforms."
+  },
+  {
+    "id": 24,
+    "chapter": "Foreign Function & Memory API",
+    "question": "What safety feature does the Foreign Function & Memory API provide compared to JNI?",
+    "options": [
+      "Automatic garbage collection for native memory",
+      "Type safety and memory bounds checking",
+      "Thread confinement for native calls",
+      "Exception handling for native code"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The Foreign Function & Memory API provides type safety and memory bounds checking, preventing common errors in native interoperation like buffer overflows or type mismatches. This makes it safer than traditional JNI, which offers minimal safety guarantees."
+  },
+  {
+    "id": 25,
+    "chapter": "Foreign Function & Memory API",
+    "question": "What is a MemoryLayout in the Foreign Function & Memory API?",
+    "options": [
+      "A GUI layout manager for memory visualization",
+      "A description of how memory is organized in the JVM",
+      "A programmatic description of data structure in memory",
+      "A performance optimization for memory access patterns"
+    ],
+    "correctAnswer": 2,
+    "explanation": "MemoryLayout describes the contents of a memory segment in terms of size, alignment, and structure. It allows Java code to interact with native data structures by providing a programmatic way to describe their layout in memory."
+  },
+  {
+    "id": 26,
+    "chapter": "New APIs and Improvements",
+    "question": "What new method was added to java.time in Java 21 for obtaining the last day of a month?",
+    "options": [
+      "Month.lastDay(Year year)",
+      "Month.lastDayOfMonth(Year year)",
+      "Year.getLastDayOf(Month month)",
+      "LocalDate.lastDayOfMonth()"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Java 21 added Month.lastDay(Year year), which returns the last day of the given month in the specified year. This handles leap years correctly for February and provides a convenient way to get month boundaries."
+  },
+  {
+    "id": 27,
+    "chapter": "New APIs and Improvements",
+    "question": "What new method allows copying Map entries from one Map to another in Java 21?",
+    "options": [
+      "Map.copyFrom(Map source)",
+      "Map.putAll(Map source)",
+      "Map.transferFrom(Map source)",
+      "Map.copy(Map source, Map target)"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Java 21 introduced Map.copyFrom(Map source), which copies all key-value mappings from the source map to this map. It's similar to putAll but can be more efficient depending on the implementation."
+  },
+  {
+    "id": 28,
+    "chapter": "New APIs and Improvements",
+    "question": "What functionality does SequencedCollection add to Collection interfaces?",
+    "options": [
+      "Thread-safe collection operations",
+      "Methods to access first/last elements and reversed views",
+      "Built-in sorting capabilities",
+      "Stream-based processing methods"
+    ],
+    "correctAnswer": 1,
+    "explanation": "SequencedCollection adds methods to access the first and last elements (getFirst(), getLast()), to add elements at the beginning or end (addFirst(), addLast()), and to obtain reversed views (reversed())."
+  },
+  {
+    "id": 29,
+    "chapter": "New APIs and Improvements",
+    "question": "What is the purpose of the String.indexOf(String str, int beginIndex, int endIndex) method in Java 21?",
+    "options": [
+      "To find a substring within specified index bounds",
+      "To count occurrences of a substring",
+      "To replace substrings in a specific range",
+      "To extract substrings between two indexes"
+    ],
+    "correctAnswer": 0,
+    "explanation": "The new String.indexOf(String str, int beginIndex, int endIndex) method searches for the first occurrence of a substring, but only within the specified range of the original string. This makes substring searching more efficient when working with portions of strings."
+  },
+  {
+    "id": 30,
+    "chapter": "New APIs and Improvements",
+    "question": "What does the java.net.HttpClient.Builder.followRedirects(HttpClient.Redirect policy) method control?",
+    "options": [
+      "Whether redirect URLs should be included in request history",
+      "The maximum number of redirects to follow",
+      "The policy for following HTTP redirects during a request",
+      "Whether to log redirect events"
+    ],
+    "correctAnswer": 2,
+    "explanation": "The followRedirects method controls the policy for following HTTP redirects during a request. It can be set to ALWAYS (follow all redirects), NEVER (don't follow redirects), or NORMAL (follow redirects except from HTTPS to HTTP)."
+  },
+  {
+    "id": 31,
+    "chapter": "Performance and Security",
+    "question": "What generational garbage collector became the default in Java 21?",
+    "options": [
+      "Serial GC",
+      "Parallel GC",
+      "G1 GC",
+      "Z Garbage Collector (ZGC)"
+    ],
+    "correctAnswer": 3,
+    "explanation": "The Z Garbage Collector (ZGC) became the default garbage collector in Java 21. It's a scalable, low-latency garbage collector that aims to keep pause times below 10ms, regardless of heap size, making it ideal for applications requiring consistent performance."
+  },
+  {
+    "id": 32,
+    "chapter": "Performance and Security",
+    "question": "What security enhancement was made to the KeyStore API in Java 21?",
+    "options": [
+      "Addition of quantum-resistant algorithms",
+      "Support for hardware-based key storage",
+      "Improved password-based encryption",
+      "Advanced key rotation capabilities"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Java 21 enhanced the KeyStore API with better support for hardware-based key storage through standardized interfaces. This allows Java applications to more easily use security hardware like HSMs (Hardware Security Modules) and TPMs (Trusted Platform Modules)."
+  },
+  {
+    "id": 33,
+    "chapter": "Performance and Security",
+    "question": "What performance improvement does StringConcatFactory provide in Java 21?",
+    "options": [
+      "Faster string concatenation by eliminating intermediate StringBuilder objects",
+      "Reduced memory usage for string operations",
+      "Parallel processing of large string operations",
+      "Optimized Unicode handling in strings"
+    ],
+    "correctAnswer": 0,
+    "explanation": "StringConcatFactory provides optimized string concatenation by generating bytecode that avoids creating unnecessary intermediate StringBuilder objects. This reduces garbage collection overhead and improves performance for string concatenation operations."
+  },
+  {
+    "id": 34,
+    "chapter": "Performance and Security",
+    "question": "What security feature was enhanced by the ability to disable weak cryptographic algorithm constraints in Java 21?",
+    "options": [
+      "TLS configurations",
+      "Password hashing",
+      "File encryption",
+      "Code signing"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Java 21 improved security by enhancing TLS configurations, allowing more granular control over which cryptographic algorithms are considered too weak to use. This helps maintain secure communications while providing flexibility for special situations."
+  },
+  {
+    "id": 35,
+    "chapter": "Performance and Security",
+    "question": "What compiler enhancement in Java 21 improves startup time?",
+    "options": [
+      "Ahead-of-Time compilation for all standard library classes",
+      "Improved class loading mechanism",
+      "Compressed class pointers",
+      "Enhanced tiered compilation"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Java 21 features enhanced tiered compilation strategies that improve application startup time by optimizing when and how code is compiled. This includes better heuristics for when to move between interpretation and various compilation levels."
+  },
+  {
+    "id": 36,
+    "chapter": "Preview Features",
+    "question": "Which feature is in preview in Java 21 to help with error handling?",
+    "options": [
+      "Exception reflection",
+      "Checked exceptions",
+      "Typed exceptions",
+      "Pattern matching for exceptions"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Pattern matching for exceptions is a preview feature in Java 21 that enhances the catch clause, allowing developers to match and destructure exception objects in a single step, making exception handling more concise and expressive."
+  },
+  {
+    "id": 37,
+    "chapter": "Preview Features",
+    "question": "What is the String Templates preview feature in Java 21?",
+    "options": [
+      "A way to define reusable text templates",
+      "A mechanism for embedding expressions and method references in string literals",
+      "A tool for generating documentation from string constants",
+      "A method to format strings based on locale"
+    ],
+    "correctAnswer": 1,
+    "explanation": "String Templates is a preview feature that allows embedding expressions and method references directly in string literals using the \\\"{expression}\" syntax. This provides a more readable alternative to string concatenation or String.format()."
+  },
+  {
+    "id": 38,
+    "chapter": "Preview Features",
+    "question": "What is the purpose of the Unnamed Classes and Instance Main Methods preview features?",
+    "options": [
+      "To simplify the creation of anonymous classes",
+      "To reduce boilerplate code for simple applications",
+      "To optimize class loading performance",
+      "To enable functional programming patterns"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Unnamed Classes and Instance Main Methods aim to reduce boilerplate code for simple applications, especially for beginners. These features allow writing Java programs without explicitly defining a class or using the traditional public static void main method signature."
+  },
+  {
+    "id": 39,
+    "chapter": "Preview Features",
+    "question": "What change to enums is being previewed in Java 21?",
+    "options": [
+      "Class inheritance for enums",
+      "Generic enums",
+      "Adding new enum constants at runtime",
+      "Sealed enums"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Generic enums are being previewed in Java 21, allowing enum types to be parameterized with type variables. This increases the expressiveness of enums by enabling them to be associated with type-safe values."
+  },
+  {
+    "id": 40,
+    "chapter": "Preview Features",
+    "question": "What is the Record Patterns preview feature primarily used for?",
+    "options": [
+      "Creating new record types dynamically",
+      "Destructuring records in pattern matching contexts",
+      "Validating record data",
+      "Serializing records to different formats"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Record Patterns allows for destructuring records in pattern matching contexts, making it easier to extract and use the components of record values. This feature works well with pattern matching for switch to create more concise and readable code."
+  },
+  {
+    "id": 41,
+    "chapter": "JVM and Tooling",
+    "question": "What new command-line tool was introduced in Java 21 for generating native images?",
+    "options": [
+      "javapackager",
+      "jlink",
+      "jimage",
+      "jpackage"
+    ],
+    "correctAnswer": 3,
+    "explanation": "jpackage was introduced to create platform-specific packages containing Java applications, including native executables. It can create distribution-friendly packages like .msi, .exe, .pkg, .deb, and .rpm, simplifying application deployment."
+  },
+  {
+    "id": 42,
+    "chapter": "JVM and Tooling",
+    "question": "What change was made to G1 garbage collector in Java 21?",
+    "options": [
+      "It was deprecated in favor of ZGC",
+      "It gained concurrent thread-stack processing",
+      "It was optimized for containerized environments",
+      "It added support for very large heaps (>4TB)"
+    ],
+    "correctAnswer": 1,
+    "explanation": "G1 gained concurrent thread-stack processing, which reduces pause times by moving some stack scanning work to concurrent phases rather than stop-the-world pauses. This improves application responsiveness, especially for applications with many threads."
+  },
+  {
+    "id": 43,
+    "chapter": "JVM and Tooling",
+    "question": "What new diagnostic option was added to the JVM in Java 21?",
+    "options": [
+      "-XX:+PrintGCDetails",
+      "-XX:+HeapDumpOnError",
+      "-XX:+ShenandoahGC",
+      "-XX:+UseZGC"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The -XX:+HeapDumpOnError option was added to automatically generate heap dumps when fatal errors occur, helping diagnose problems in production environments without requiring manual intervention."
+  },
+  {
+    "id": 44,
+    "chapter": "JVM and Tooling",
+    "question": "What new feature in jcmd helps with diagnosing memory issues?",
+    "options": [
+      "Thread stack analysis",
+      "Native memory tracking",
+      "Object histogram with referrers",
+      "Method profiling"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Java 21 enhanced jcmd with improved object histogram capabilities, including the ability to trace referrers. This helps diagnose memory leaks by showing which objects are preventing garbage collection of others."
+  },
+  {
+    "id": 45,
+    "chapter": "JVM and Tooling",
+    "question": "Which tool was enhanced in Java 21 to support the analysis of virtual threads?",
+    "options": [
+      "jstack",
+      "jmap",
+      "jfr (Java Flight Recorder)",
+      "jstat"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Java Flight Recorder (jfr) was enhanced to provide better visibility into virtual threads, including their creation, scheduling, and pinning events. This helps diagnose performance issues specific to applications using virtual threads."
+  }
+]
